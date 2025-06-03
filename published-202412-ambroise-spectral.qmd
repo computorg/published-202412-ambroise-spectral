@@ -54,6 +54,11 @@ editor:
 ---
 
 
+```{r setup, warning=FALSE, message=FALSE}
+#| echo: false 
+#| file: figures/setup-figs.R
+```
+
 # Introduction
 
 
@@ -97,17 +102,19 @@ The proposed algorithm uses k-means centroids for vector quantization defining V
 
 ## Bridge affinity {#sec-bridge-affinity}
 
-
 The basic idea involves calculating the difference in inertia achieved by projecting onto a segment connecting two centroids, rather than using the two centroids separately (see @fig-balls-bridge). If the difference is small, it suggests a low density between the classes. Conversely, if this difference is large, it indicates that the two classes may reside within the same densely populated region.
 
-::: {#fig-balls-bridge layout-ncol=2}
 
-![](figures/balls.pdf){width=50%}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+#| label: fig-balls-bridge
+#| fig-cap: "Balls (left) versus Bridge (right). The inertia of each structure is the sum of the squared distances represented by grey lines."
+grid.arrange(
+  plot_balls(a = center[1], b = center[2], c = mu2[1], d = mu2[2]),
+  plot_bridge(a = center[1], b = center[2], c = mu2[1], d = mu2[2]), 
+  ncol = 2
+)
+```
 
-![](figures/bridge.pdf){width=50%}
-
-Balls (left) versus Bridge (right). The inertia of each structure is the sum of the squared distances represented by grey lines.
-:::
 
 Let us consider a sample $X=(\boldsymbol x_i)_{i \in \{1,\cdots,n\}}$ of vectors $\boldsymbol x_i \in \mathbb R^d$ and a set of $m$ coding vectors $(\boldsymbol \mu_k)_{k \in \{1,\cdots,m\}}$ defining a partition $P=\{\mathcal{V}_1,\cdots,\mathcal{V}_m \}$ of $\mathbb R^d$ into $m$ Voronoï regions:
 $$
@@ -180,15 +187,15 @@ within the same densely populated region. Consequently, the sum of the
 $\alpha_i$ or $\alpha_i^2$ increases with the density of the region
 between the classes (See Figure @fig-interpretation). 
 
-::: {#fig-interpretation layout-ncol=2}
+::: {#fig-interpretation layout="[[1,1], [1,1]]"}
 
-![Margin with close centroids](figures/svm-interpretation-3.pdf)
+![Margin with close centroids](figures/svm-interpretation-3.svg)
 
-![Density of the $\alpha_i$ for close centroids](figures/histo-alphai-3.pdf)
+![Density of the $\alpha_i$ for close centroids](figures/histo-alphai-3.svg)
 
-![Margin with well separated centroids](figures/svm-interpretation-10.pdf)
+![Margin with well separated centroids](figures/svm-interpretation-10.svg)
 
-![Density of the $\alpha_i$ for well separated centroids](figures/histo-alphai-10.pdf)
+![Density of the $\alpha_i$ for well separated centroids](figures/histo-alphai-10.svg)
 
 Spectral Bridge affinity illustration involving two centroids. The bold black dots mark the centroids of each cluster, while the colored cells represent the final partition of data points. In subfigures (a) and (c), the length of each dotted grey segment is proportional to $1/2 - \alpha_i$, whereas the thin black segments are proportional to $\alpha_i$. Subfigures (b) and (d) depict the distribution of $\alpha_i$, showing the behavior when clusters are either closely positioned (a, b) or well-separated (c, d).
 :::
@@ -280,11 +287,11 @@ In spectral clustering, the time complexity is usually dominated by the eigendec
 
 ::: {#fig-steps layout-ncol=3}
 
-![Vector quantization](figures/spectral-briges-1.pdf)
+![Vector quantization](figures/spectral-bridges-1.svg)
 
-![Affinity computation](figures/spectral-briges-2.pdf)
+![Affinity computation](figures/spectral-bridges-2.svg)
 
-![Spectral clustering](figures/spectral-briges-3-4.pdf)
+![Spectral clustering](figures/spectral-bridges-3-4.svg)
 
 Illustration of the Spectral Bridges algorithm with the Iris dataset (first principal plane). The bold red dots represent the centroids of the clusters, while the colored cells indicate the final partition of the data points. Vector quantization (Step 1 of @alg-spectral-bridges), Affinity computation (Step 2 of @alg-spectral-bridges), Spectral clustering and spreading (Step 3-4 of @alg-spectral-bridges).
 :::
@@ -369,7 +376,7 @@ The hyperparameters of the Spectral Bridges algorithm were based on the size of 
 
 To better grasp the sensitivity with respect to $m$, the number of Voronoï cells, Spectral Bridges was run on the PCA $h = 32$ embedded MNIST dataset with varying values of $m \in \{10, 120, 230, 340, 450, 560, 670, 780, 890, 1000\}$. The case $m = 10$ is equivalent to the k-means++ algorithm. ARI and NMI scores are recorded over 20 consecutive iterations and subsequently plotted. As shown by @fig-m-vs-score, the accuracy seems to be consistently increasing with values of $m$, with the largest observed gap occurring between values of $m = 10$ and $m = 120$, and flattening thereafter, indicating a tremendous improvement over the classical k-means++ framework even for empirically suboptimal hyperparameter values. 
 
-![ARI and NMI scores of Spectral Bridges with varying values of $m$.](figures/nodes_vs_score.pdf){#fig-m-vs-score}
+![ARI and NMI scores of Spectral Bridges with varying values of $m$.](figures/nodes_vs_score.svg){#fig-m-vs-score}
 
 For other algorithms, such as DBSCAN, labels were used to determine the best hyperparameter values to compare our method against the "best case scenario", thus putting  the Spectral Bridges algorithm at a voluntary disadvantage.
 
@@ -381,9 +388,9 @@ To assess the algorithm's time complexity, the average execution times over 50 r
 
 ::: {#fig-time-complexity layout-ncol=2}
 
-![Varying $n$, fixed $m = 10$](figures/size_vs_time.pdf)
+![Varying $n$, fixed $m = 10$](figures/size_vs_time.svg)
 
-![Varying $m$, fixed $n = 5000$](figures/nodes_vs_time.pdf)
+![Varying $m$, fixed $n = 5000$](figures/nodes_vs_time.svg)
 
 Average time taken per model fit.
 :::
@@ -398,7 +405,7 @@ Let $h$ denote the embedding dimension of the dataset. Spectral Bridges was test
 
 ::: {#fig-mnist-pca-scores layout-nrow=2}
 
-![ARI and NMI scores of k-means++ (pink), EM (green), Ward Clustering (red), GIT (blue), and Spectral Bridges (purple).](figures/mnist_pca_summary.pdf)
+![ARI and NMI scores of k-means++ (pink), EM (green), Ward Clustering (red), GIT (blue), and Spectral Bridges (purple).](figures/mnist_pca_summary.svg)
 
 | Metric  | Algorithm | h = 8             | h = 16            | h = 32            | h = 64            | h = 784 (full)    |
 |---------|-----------|-------------------|-------------------|-------------------|-------------------|-------------------|
@@ -420,7 +427,7 @@ Additionally, the proposed algorithm was evaluated on the MNIST dataset after re
 
 ::: {#fig-mnist-umap-scores layout-nrow=2}
 
-![ARI and NMI scores of k-means++ (pink), EM (green), Ward Clustering (red), GIT (blue), Spectral Bridges (purple).](figures/mnist_umap_summary.pdf)
+![ARI and NMI scores of k-means++ (pink), EM (green), Ward Clustering (red), GIT (blue), Spectral Bridges (purple).](figures/mnist_umap_summary.svg)
 
 | Metric  | Algorithm | h = 2             | h = 4             | h = 8             | h = 16            |
 |---------|-----------|-------------------|-------------------|-------------------|-------------------|
@@ -444,11 +451,11 @@ For visualization purposes, the predicted clusters by Spectral Bridges and k-mea
 
 ::: {#fig-MNIST layout-ncol=3}
 
-![k-means++](figures/KMumap.pdf)
+![k-means++](figures/KMumap.jpg)
 
-![Spectral Bridges](figures/SBumap.pdf)
+![Spectral Bridges](figures/SBumap.jpg)
 
-![Ground Truth](figures/GTumap.pdf)
+![Ground Truth](figures/GTumap.jpg)
 
 UMAP projection of predicted clusters against the ground truth labels.
 :::
@@ -457,7 +464,7 @@ The Spectral Bridges algorithm was also put to the test against the same competi
 
 :::{#fig-cancer-scores layout-nrow=2}
 
-![ARI and NMI scores of k-means++ (pink), EM (green), Ward Clustering (red), GIT (blue), and Spectral Bridges (purple) on the UCI Breast Cancer dataset.](figures/cancer_summary.pdf)
+![ARI and NMI scores of k-means++ (pink), EM (green), Ward Clustering (red), GIT (blue), and Spectral Bridges (purple) on the UCI Breast Cancer dataset.](figures/cancer_summary.svg)
 
 | Metric  | Algorithm               | UCI Breast Cancer |
 |---------|-------------------------|-------------------|
@@ -477,24 +484,24 @@ Comparison of clustering algorithms on the UCI Breast Cancer dataset with ARI an
 
 Since the Spectral Bridges algorithm is expected to excel at discerning complex and intricate cluster structures, an array of four toy datasets was collected, as illustrated in @fig-toy-datasets.
 
-::: {#fig-toy-datasets layout-ncol=4}
+:::{#fig-toy-datasets layout-ncol=4}
 
-![Impossible](figures/impossible.pdf)
+![Impossible](figures/impossible.jpg)
 
-![Moons](figures/moons.pdf)
+![Moons](figures/moons.jpg)
 
-![Circles](figures/circles.pdf)
+![Circles](figures/circles.jpg)
 
-![Smile](figures/smile.pdf)
+![Smile](figures/smile.jpg)
 
 Four toy datasets.
 :::
 
 Multiple algorithms, including the proposed one, were benchmarked in the exact same manner as for the UCI Breast Cancer data. The results show that the proposed method outperforms all tested algorithms (DBSCAN, k-means++, Expectation Maximization, GIT, and Ward Clustering) while requiring few hyperparameters. As previously discussed, DBSCAN's parameters were optimized using the ground truth labels to represent a best-case scenario; however, in practical applications, suboptimal performance is more likely. Despite this optimization, the Spectral-Bridge algorithm still demonstrates superior ability to capture and represent the underlying cluster structures.
 
-::: {#fig-synthetic-scores layout-nrow=2}
+:::{#fig-synthetic-scores layout-nrow=2}
 
-![ARI and NMI scores of Spectral Bridges and competitors on standard synthetic toy datasets.](figures/synthetic_summary.pdf)
+![ARI and NMI scores of Spectral Bridges and competitors on standard synthetic toy datasets.](figures/synthetic_summary.svg)
 
 | Metric  | Algorithm | Impossible        | Moons             | Circles           | Smile             |
 |---------|-----------|-------------------|-------------------|-------------------|-------------------|
@@ -520,13 +527,13 @@ Comparison of clustering algorithms on toy datasets with ARI and NMI metrics. Th
 
 To evaluate the noise robustness of the algorithm, two experimental setups were devised: one involved introducing Gaussian-distributed perturbations to the data, and the other involved concatenating uniformly distributed points within a predefined rectangular region (determined by the span of the dataset) to the existing dataset. As illustrated in @fig-noise-robustness, the tests demonstrate that in both scenarios, the algorithm exhibits a high degree of insensitivity to noise.
 
-::: {#fig-noise-robustness layout-ncol=3}
+:::{#fig-noise-robustness layout-ncol=3}
 
-![Clean](figures/clean_impossible.pdf)
+![Clean](figures/clean_impossible.jpg)
 
-![Uniform noise](figures/uniform_noise_impossible.pdf)
+![Uniform noise](figures/uniform_noise_impossible.jpg)
 
-![Gaussian noise](figures/gaussian_noise_impossible.pdf)
+![Gaussian noise](figures/gaussian_noise_impossible.jpg)
 
 Three representations of the algorithm's predicted cluster centers are displayed as colored dots, with each point of the Impossible dataset shown as a small black dot. In the left graph, the dataset is unmodified. In the center graph, 250 uniformly distributed samples were added. In the right graph, Gaussian noise perturbations with $\sigma = 0.1$ were applied.
 :::
@@ -671,7 +678,7 @@ affinity = np.exp(gamma * affinity)
 
 # References {.unnumbered}
 
-::: {#refs}
+:::{#refs}
 :::
 
 
