@@ -6,8 +6,6 @@ on:
   repository_dispatch:
     types: [custom-event] 
   workflow_dispatch:
-  schedule:
-    - cron: '00 09 * * 7 [ $(date +\%d) -le 07 ]'
   pull_request:
     branches: ["main","master"]
 
