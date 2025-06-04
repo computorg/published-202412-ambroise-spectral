@@ -37,7 +37,7 @@ citation:
   type: article-journal
   container-title: "Computo"
   doi: "10.57750/1gr8-bk61"
-  url: "https://github.com/computorg/published-202412-ambroise-spectral"
+  url: "https://computo.sfds.asso.fr/published-202412-ambroise-spectral/"
   issn: "2824-7795"
 bibliography: references.bib
 google-scholar: true
