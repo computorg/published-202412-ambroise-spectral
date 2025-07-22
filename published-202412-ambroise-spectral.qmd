@@ -37,6 +37,7 @@ citation:
   container-title: "Computo"
   doi: "10.57750/1gr8-bk61"
   issn: "2824-7795"
+  publisher: "French Statistical Society"
 bibliography: references.bib
 google-scholar: true
 github-user: computorg
