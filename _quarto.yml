@@ -1,7 +1,58 @@
 project:
-  title: "Spectral Bridges"
   render:
     - "published-202412-ambroise-spectral.qmd"
 
+title: "Spectral Bridges"
+date: 12-13-2024
+date-modified: last-modified
+author:
+  - name: Félix Laplante
+    email: flheight0@gmail.com
+    affiliations:
+      - name: Université Paris-Saclay, CNRS, Univ Evry, 
+        department: Laboratoire de Mathématiques et Modélisation d'Évry
+        address: 23 boulevard de France
+        city: Évry-Courcouronnes
+        country: France
+        url: http://www.math-evry.cnrs.fr/
+  - name: Christophe Ambroise
+    corresponding: true
+    email: christophe.ambroise@univ-evry.fr
+    url: https://cambroise.github.io/
+    orcid: 0000-0002-8148-0346
+    affiliations:
+      - name: Université Paris-Saclay, CNRS, Univ Evry, 
+        department: Laboratoire de Mathématiques et Modélisation d'Évry
+        address: 23 boulevard de France
+        city: Évry-Courcouronnes
+        country: France
+        url: http://www.math-evry.cnrs.fr/
+description: Scalable Spectral Clustering Based on Vector Quantization
+abstract: >+
+  In this paper, Spectral Bridges, a novel clustering algorithm, is introduced. This algorithm builds upon the traditional k-means and spectral clustering frameworks by subdividing data into small Voronoï regions, which are subsequently merged according to a connectivity measure. Drawing inspiration from Support Vector Machine's margin concept, a non-parametric clustering approach is proposed, building an affinity margin between each pair of Voronoï regions. This approach delineates intricate, non-convex cluster structures and is robust to hyperparameter choice.
+
+  The numerical experiments underscore Spectral Bridges as a fast, robust, and versatile tool for  clustering tasks spanning diverse domains. Its efficacy extends to large-scale scenarios encompassing both real-world and synthetic datasets. 
+
+  The Spectral Bridge algorithm is implemented both in Python (<https://pypi.org/project/spectral-bridges>) and R <https://github.com/cambroise/spectral-bridges-Rpackage>).
+keywords: [spectral clustering, vector quantization, scalable, non-parametric]
+citation:
+  type: article-journal
+  container-title: "Computo"
+  doi: "10.57750/1gr8-bk61"
+  issn: "2824-7795"
+  publisher: "French Statistical Society"
+bibliography: references.bib
+google-scholar: true
+github-user: computorg
+repo: "published-202412-ambroise-spectral"
+draft: false # set to false once the build is running
+published: true # will be set to true once accepted
+format:
+  computo-html: default 
+  computo-pdf:  
+    fig-pos: H
+editor: 
+  markdown: 
+    wrap: 72
 
 
