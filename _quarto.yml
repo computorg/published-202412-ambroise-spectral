@@ -45,6 +45,10 @@ citation:
   publisher: "French Statistical Society"
 bibliography: references.bib
 google-scholar: true
+related-identifiers:
+  - relation: IsVersionOf
+    type: arXiv
+    identifier: "2407.07430"
 github-user: computorg
 repo: "published-202412-ambroise-spectral"
 status: published
