@@ -4,7 +4,7 @@ project:
     - README.qmd
 
 title: "Spectral Bridges"
-date: 12-13-2024
+date: 2024-12-13
 date-modified: last-modified
 author:
   - name: Félix Laplante
@@ -43,6 +43,7 @@ citation:
   issn: "2824-7795"
   url: "https://computo-journal.org/published-202412-ambroise-spectral/"
   publisher: "French Statistical Society"
+  issued: "2024-12-13"
 bibliography: references.bib
 google-scholar: true
 related-identifiers:
