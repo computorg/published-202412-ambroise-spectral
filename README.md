@@ -2,14 +2,22 @@
 Félix Laplante, Christophe Ambroise
 2024-12-13
 
+### Citation
+
+Félix Laplante and Christophe Ambroise (December 2024). Spectral Bridges. Computo.
+<https://doi.org/10.57750/1gr8-bk61>
+
+### Badges
+
 [![build and
 publish](https://github.com/computorg/published-202412-ambroise-spectral/actions/workflows/build.yml/badge.svg)](https://github.com/computorg/published-202412-ambroise-spectral/actions/workflows/build.yml)
-[![reviews](https://img.shields.io/badge/review-report-blue.png)](https://github.com/computorg/published-202412-ambroise-spectral/issues?q=is%3Aopen+is%3Aissue+label%3Areview)
+[![reviews](https://img.shields.io/badge/review-report-blue)](https://github.com/computorg/published-202412-ambroise-spectral/issues?q=is%3Aopen+is%3Aissue+label%3Areview)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/computorg/published-202412-ambroise-spectral)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/computorg/published-202412-ambroise-spectral)
 [![DOI:10.57750/1gr8-bk61](https://img.shields.io/badge/DOI-10.57750%2F1gr8--bk61-034E79.svg)](https://doi.org/10.57750/1gr8-bk61)
 [![Creative Commons
 License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
-### Authors
+### Authors’ affiliations
 
 - Félix Laplante (Université Paris-Saclay, CNRS, Univ Evry,)
 - [Christophe Ambroise](https://cambroise.github.io/) (Université Paris-Saclay, CNRS, Univ Evry,)
